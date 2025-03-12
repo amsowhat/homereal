@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <title>제목</title>
+    <meta name="description" content="설명">
+    <meta name="keywords" content="키워드1, 키워드2">
+    <meta property="og:image" content="">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+</head>
+<body class="custom-cursor-active">  
+
+    <!-- 🔥 사용자 지정 커서 -->
+    <div id="custom-cursor"></div>
+
+   
+
+    
+
+
+    <div id="intro-screen">
+        <img src="assets/video/darkmode.gif" id="intro-gif" alt="Intro Animation">
+        <img onclick="myfunction()" src="assets/images/click-to-enter2.png" id="enter-image" alt="Click to Enter">
+    </div>
+
+
+
+
+<!-- <div id="intro-screen">
+    <img src="assets/video/intro.gif" id="intro-gif" alt="Intro Animation">
+    <img onclick="myfunction()" src="assets/images/click-to-enter.png" id="enter-image" alt="Click to Enter">
+</div>
+ -->
+
+
+
+
+
+
+    <!-- 🔥 본문 내용 (초기에는 숨김) -->
+    <div id="main-content">
+        <p>
+            Hi, there! Sohyun who is a 
+            <a class="link" href="https://sohyunkang.com/" data-image="assets/img/lego.png" target="_blank">brand designer </a>
+             from Seoul, KR. And this is Sohyun's New Home.
+            <a class="link" href="https://sohyun-kang.neocities.org/linktree/" data-image="assets/img/linktree.png" target="_blank">Linktree (2024.01.18)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/everyday_meal1/" data-image="assets/img/sunday.png" target="_blank">Collection of Things - Sunday (2024.01.19)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/everyday_meal2/" data-image="assets/img/monday.png" target="_blank">Collection of Things - Monday(2024.01.20)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/everyday_meal3/" data-image="assets/img/tuesday.png" target="_blank">Collection of Things - Tuesday (2024.01.21)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/everyday_meal4/" data-image="assets/img/wednesday.png" target="_blank">Collection of Things - Wednesday (2024.01.22)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/everyday_meal5/" data-image="assets/img/thursday.png" target="_blank">Collection of Things - Thursday (2024.01.23)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/everyday_meal6/" data-image="assets/img/friday.png" target="_blank">Collection of Things - Friday( 2024.01.24)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/bio_on_table/" data-image="assets/img/bio.png" target="_blank">Bio On Table(2024.01.25)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/use_used_used/" data-image="assets/img/half.png" target="_blank">Collection Of Things (2024.02.01)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/answeringmachine/" data-image="assets/img/answering.png" target="_blank">Answering Machine (2024.02.08)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/survival_kit/" data-image="assets/img/half.png" target="_blank">Half-Half (2024.02.15)</a>,
+            <a class="link" href="https://sohyun-kang.neocities.org/homesweethome/" data-image="assets/img/home.png" target="_blank">Home Sweet Home (2024.02.22)</a>,
+            Also (To be continued...)
+        </p>
+    </div>
+
+    <!-- 🔥 마우스 오버 시 표시할 이미지 -->
+    <div id="hover-image-popup">
+        <img id="hover-popup-image" src="" alt="Hover Popup Image">
+    </div>
+
+    <!-- 🔥 JavaScript -->
+    <script>
+        function myfunction() {
+            alert("Hi,,,This maybe...");
+
+            const introScreen = document.getElementById("intro-screen");
+            const mainContent = document.getElementById("main-content");
+            const cursor = document.getElementById("custom-cursor");
+
+            // 🔥 1초 후 페이드아웃 및 화면 전환
+            introScreen.style.opacity = "0";
+            setTimeout(() => {
+                introScreen.style.display = "none"; // 영상 화면 숨김
+                mainContent.style.display = "block"; // 본문 표시
+
+                // ✅ Alert 이후 커서 변경
+                cursor.style.background = "url('assets/img/mouse200.png') no-repeat center";
+                cursor.style.backgroundSize = "contain";
+                cursor.style.display = "block"; // 커서 계속 유지
+            }, 1000);
+        }
+
+        // 🔥 마우스 오버 시 이미지 표시 후, 벗어나면 사라짐
+        document.addEventListener("DOMContentLoaded", function () {
+            const links = document.querySelectorAll(".link");
+            const hoverPopup = document.getElementById("hover-image-popup");
+            const hoverPopupImage = document.getElementById("hover-popup-image");
+
+            links.forEach(link => {
+                link.addEventListener("mouseenter", function () {
+                    const imageUrl = link.getAttribute("data-image");
+                    if (imageUrl) {
+                        hoverPopupImage.src = imageUrl;
+                        hoverPopup.style.display = "flex";
+                    }
+                });
+
+                link.addEventListener("mouseleave", function () {
+                    hoverPopup.style.display = "none";
+                });
+            });
+        });
+
+        // 🔥 커서 스크립트
+        document.addEventListener("mousemove", (e) => {
+            const cursor = document.getElementById("custom-cursor");
+            cursor.style.left = e.clientX + "px";
+            cursor.style.top = e.clientY + "px";
+            cursor.style.display = "block";
+        });
+
+        document.addEventListener("mouseleave", () => {
+            document.getElementById("custom-cursor").style.display = "none";
+        });
+    </script>
+
+</body>
+</html>

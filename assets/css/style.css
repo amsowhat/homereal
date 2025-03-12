@@ -1,0 +1,245 @@
+/* ✅ 기본 스타일 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+  font-family: abc;
+  src: url('../font/ABC Maxi/ABC Maxi Round/ABCMaxiRound-Regular-Trial.otf');
+
+}
+
+/* ✅ 기본 바디 스타일 */
+body {
+/*    margin: 20px;*/
+/*    color: #80540d;*/
+    color: #000000;
+    background-color: #e3e3e3;
+    font-family: abc;
+    font-size: 38pt;
+    cursor: none !important;  /* 기본 커서 숨기기 */
+
+}
+
+a {
+    all: unset;  /* 🔥 기본 스타일 제거 */
+    color: black;  /* 🔥 검정색 적용 */
+    cursor: pointer;  /* 🔥 클릭 가능하도록 변경 */
+}
+
+    
+
+/* Dark Mode에서만 적용될 스타일 */
+body.dark-mode {
+    background-color: #000;  /* 배경을 어두운 색으로 */
+    color: #fff;  /* 글자 색을 흰색으로 */
+}
+
+body.dark-mode #hover-image-popup {
+      /* 배경을 어두운 반투명 */
+    filter: blur(10px);  /* 블러 효과 */
+}
+
+body.dark-mode {
+    font-family: abc;  /* Dark Mode에서만 글꼴을 설정 */
+}
+
+/* 다크 모드에서 텍스트 색상 및 스타일 변경 */
+body.dark-mode #mode-toggle {
+    background: rgba(0, 0, 0, 0.2);  /* 다크 모드 배경 */
+    color: #fff;  /* 글자 색 */
+}
+
+/* Dark Mode 상태에서 Hover 효과 */
+body.dark-mode #mode-toggle:hover {
+    background: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
+}
+
+/* Dark Mode에서만 토글 버튼의 회전 효과 */
+body.dark-mode .toggle-icon {
+    transform: rotate(360deg);
+}
+
+/* ✅ 초기 화면 (영상과 이미지 오버레이) */
+#intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    transition: opacity 1s ease-in-out;
+    z-index: 100;
+    overflow: hidden;
+}
+
+#intro-video {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#darkmode-content {
+    position: absolute;
+    
+}
+
+#intro-gif {
+    position: fixed;
+    top: 0;
+    left: 0;  
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;  
+    z-index: 100;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* ✅ Dark Mode에서도 GIF가 사라지지 않게 유지 */
+body.dark-mode #intro-gif {
+    left: 0;  
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    opacity: 1;
+}
+
+/* ✅ 클릭 이미지 (영상 위에 표시) */
+#enter-image {
+    position: relative;
+    z-index: 101;
+    width: 400px;
+    max-width: 80%;  /* 화면 크기에 맞게 조정 */
+    transition: transform 0.3s ease-in-out;
+}
+
+#enter-image:hover {
+    transform: scale(1.1);
+}
+
+/* 본문 기본적으로 숨김 */
+#main-content {
+    display: none; /* 기본적으로 숨김 */
+    opacity: 0; /* 투명하게 설정 */
+    margin : 20px;
+    transition: opacity 0.5s ease-in-out; /* 부드럽게 나타나도록 효과 추가 */
+}
+
+}
+
+/* 링크 스타일 원래대로 유지 (밑줄 & 색상 문제 해결) */
+a {
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+/* 마우스를 올린 링크만 색상 변경 */
+.link:hover {
+    color: #53ebdc !important;
+    text-decoration: none !important;
+}
+
+/* 마우스 오버 시 표시할 이미지 */
+#hover-image-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    background: none;
+}
+
+#hover-popup-image {
+    max-width: 200%;
+    max-height: 200%;
+    cursor: default;
+}
+
+/* 지정 커서 (Alert 이전 - 작은 크기) */
+#custom-cursor {
+    position: absolute;
+    width: 100px; /* Alert 이전 크기 */
+    height: 100px;
+    background: url("../img/key128.png") no-repeat center;
+    background-size: contain;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 100000;
+    display: none;
+}
+
+/* Alert 이후 마우스 커서 변경 (큰 크기) */
+.after-alert-cursor #custom-cursor {
+    width: 150px; /* Alert 이후 크기 */
+    height: 150px;
+    background: url("../img/mouse200.png") no-repeat center;
+    background-size: contain;
+}
+
+/* ✅ 토글 버튼 스타일 */
+.toggle-container {
+    position: fixed;
+    bottom: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 160px;  /* 토글 크기 */
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2); /* 반투명 */
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    z-index: 9999;
+    padding: 5px 15px;  /* 내부 여백 */
+}
+
+/* ✅ 버튼 내부 아이콘 (이모지) */
+.toggle-icon {
+    font-size: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+/* ✅ 버튼 내부 텍스트 */
+.toggle-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    flex-grow: 1;  /* 텍스트가 중앙 정렬되도록 설정 */
+}
+
+/* ✅ Dark Mode일 때 스타일 변경 */
+body.dark-mode .toggle-container {
+    background: rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+}
+
+body.dark-mode .toggle-text {
+    color: white;
+}
+
+/* ✅ 아이콘 애니메이션 */
+body.dark-mode .toggle-icon {
+    transform: rotate(360deg);
+}
+
